@@ -1,0 +1,64 @@
+body { 
+    font-family: Arial, sans-serif; 
+    max-width: 600px; 
+    margin: auto; 
+    background-color: #2b2b2b; 
+    color: #f0f0f0;
+}
+
+h2 { text-align: center; }
+
+.form-group { 
+    margin: 10px 0; 
+}
+
+input[type="date"], 
+input[type="number"], 
+select {
+    background-color: #444; 
+    color: #f0f0f0;
+    border: 1px solid #777;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.stats { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    margin: 20px 0; 
+}
+
+.stat-category {
+    border: 1px solid #444; 
+    border-radius: 8px; 
+    padding: 10px; 
+    background-color: #333; 
+}
+
+.stat-category h3 {
+    margin-top: 0; 
+    color: #ddd;
+    font-size: 1.1em;
+}
+
+.stat-item { 
+    margin: 5px 0; 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 0.9em; 
+    color: #ccc; 
+}
+
+button {
+    background-color: #1c3b5b;
+    color: #f0f0f0;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover { 
+    background-color: #2e5985; 
+}
