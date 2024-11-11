@@ -22,7 +22,7 @@ function setupCharts() {
         data: {
             labels: [],
             datasets: [{
-                label: 'Profit over Time',
+                label: 'Balance over Time',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
