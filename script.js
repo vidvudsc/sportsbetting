@@ -359,24 +359,24 @@ function updateChartsWithNewData(dates, profits, dailyResults, dayOfWeekProfits)
     profitChart.data.datasets[0].data = profits;
     profitChart.update();
 
-    // Update Daily Wins Chart
-    dailyWinsChart.data.labels = Object.keys(dailyResults);
-    dailyWinsChart.data.datasets = [
-        {
-            label: 'Daily Wins',
-            data: Object.values(dailyResults).map(result => result.win),
-            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-            borderColor: 'rgb(75, 192, 192)',
-            borderWidth: 1
-        },
-        {
-            label: 'Daily Losses',
-            data: Object.values(dailyResults).map(result => result.loss),
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            borderColor: 'rgb(255, 99, 132)',
-            borderWidth: 1
-        }
-    ];
+    // Calculate net profit/loss per day
+    const netDailyResults = Object.keys(dailyResults).reduce((acc, date) => {
+        acc[date] = dailyResults[date].win + dailyResults[date].loss;
+        return acc;
+    }, {});
+
+    // Determine colors based on net result
+    const netColors = Object.values(netDailyResults).map(value => value >= 0 ? 'rgba(75, 192, 192, 0.5)' : 'rgba(255, 99, 132, 0.5)');
+
+    // Update Daily Wins Chart with net results
+    dailyWinsChart.data.labels = Object.keys(netDailyResults);
+    dailyWinsChart.data.datasets = [{
+        label: 'Net Daily Profit/Loss',
+        data: Object.values(netDailyResults),
+        backgroundColor: netColors,
+        borderColor: netColors.map(color => color.replace('0.5', '1')),
+        borderWidth: 1
+    }];
     dailyWinsChart.update();
 
     // Update Bet Types Chart
